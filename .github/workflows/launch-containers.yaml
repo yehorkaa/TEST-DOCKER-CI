@@ -23,5 +23,5 @@ jobs:
         password: bout2005am
     - name: Build and run Docker image
       run: docker build -t myapp:test .
-    - name: Run docker container:
+    - name: Run docker container
       run:  docker run -p 5173:5173 myapp:test 
