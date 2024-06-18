@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,3 +34,6 @@ jobs:
 
       - name: Check Docker container logs
         run: docker logs $(docker ps -q --filter ancestor=myapp:test)
+
+      - name: Test application endpoint
+        run: curl -f http://localhost:5173 || exit 1
